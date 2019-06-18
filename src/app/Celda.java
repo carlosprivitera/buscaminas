@@ -8,7 +8,7 @@ public class Celda extends JButton {
     private int filaY=0, columnaX=0;                  // es igual a la cantidad de celdas en el tablero
     private boolean hayBomba = false; //Verdadero si hay una bomba en la celda
     private boolean estaDespejado = false; //Verdadero si la celda esta despejada
-    private int nBombasAlrededor=0; //Si no hay una bomba contendra la cantidad de bombas al rededor
+    private int nBombasAlrededor=0; //Si no hay una bomba contendra la cantidad de bombas alrededor
     private boolean protejida = false; //protejida por la bandera o ? 
     public Celda(int f, int c) {
         super(); 

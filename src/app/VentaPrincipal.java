@@ -163,9 +163,9 @@ public class VentaPrincipal extends JFrame {
             }   
         }
         this.jLabel1.setText("Cantidad de minas = " + Celda.getNBombasTablero());
-        for(int f=0; f<FILAS; f++) { //Pone en cada celda la cantidad de minas al rededor
+        for(int f=0; f<FILAS; f++) { //Pone en cada celda la cantidad de minas alrededor
             for(int c=0; c<COLUMNAS; c++) {
-              if(celda[f][c].isHayBomba()== false) {//Si no es mina, calcular las minas al rededor
+              if(celda[f][c].isHayBomba()== false) {//Si no es mina, calcular las minas alrededor
                 nBombasAlRededor(f, c);
               }  
             }   
@@ -188,7 +188,7 @@ public class VentaPrincipal extends JFrame {
             JOptionPane.showMessageDialog(this, "Había una mina en " + y + ":" + x);
             nuevoJuego();
           }else { //Bien! continuar con el juego
-            if(celdaXY.getNBombasAlrededor()>0){ //Pregunta se la celdaXY tiene minas al rededor                                              
+            if(celdaXY.getNBombasAlrededor()>0){ //Pregunta se la celdaXY tiene minas alrededor                                              
               if(celdaXY.isEstaDespejado()==false) {
                 celdaXY.setText(""+celdaXY.getNBombasAlrededor());
                 celdaXY.setBackground(Color.ORANGE);
@@ -200,12 +200,12 @@ public class VentaPrincipal extends JFrame {
                   nuevoJuego();
                 }  
               }else{
-                  JOptionPane.showMessageDialog(this, "La celda con minas al rededor ya está despejada");  
+                  JOptionPane.showMessageDialog(this, "La celda con minas alrededor ya está despejada");  
               }
-            }else { //Si no tiene minas al rededor, limpiar el tablero recursivamente 
-                    //  todas las celdasXY contiguas que no tengas minas al rededor
+            }else { //Si no tiene minas alrededor, limpiar el tablero recursivamente 
+                    //  todas las celdasXY contiguas que no tengas minas alrededor
                 if(celdaXY.isEstaDespejado()==false) {
-                  limpiarRecursiva(y, x, 0); //limpiarRecursiva(y,x) es llamada si no tiene minas al rededor
+                  limpiarRecursiva(y, x, 0); //limpiarRecursiva(y,x) es llamada si no tiene minas alrededor
                  // Celda.setNCeldasLimpiadas(Celda.getNCeldasLimpiadas() + celdasLimpiadas);
                   this.jLabel2.setText(" Terreno limpiado = " + Celda.getNCeldasLimpiadas());
                   if((Celda.getNBombasTablero() + Celda.getNCeldasLimpiadas()) == (FILAS * COLUMNAS) ) {
@@ -213,14 +213,14 @@ public class VentaPrincipal extends JFrame {
                     nuevoJuego();
                   }  
                 }else{
-                  JOptionPane.showMessageDialog(this, "La celda sin minas al rededor ya está despejada");
+                  JOptionPane.showMessageDialog(this, "La celda sin minas alrededor ya está despejada");
                 }
             }       
          }
       }    
     }
     private int p[] = {0,-1, 1,-1, 1,0, 1,1, 0,1, -1,1, -1,0, -1,-1};
-    private void limpiarRecursiva(int y, int x, int nivelX) { //limpiarRecursiva(y,x) es llamada/rellamada si no tiene minas al rededor
+    private void limpiarRecursiva(int y, int x, int nivelX) { //limpiarRecursiva(y,x) es llamada/rellamada si no tiene minas alrededor
         int miNivel = nivelX + 1; 
         String s=""; 
         for(int z=0; z<miNivel; z++){
@@ -233,14 +233,14 @@ public class VentaPrincipal extends JFrame {
           celda[y+0][x-0].setBackground(Color.GREEN);
           Celda.setNCeldasLimpiadas(Celda.getNCeldasLimpiadas() + 1);
             //}catch(Exception e00){ }
-            if(celda[y+0][x-0].getNBombasAlrededor()==0) { //???? es garantia que no hay minas al rededor
+            if(celda[y+0][x-0].getNBombasAlrededor()==0) { //???? es garantia que no hay minas alrededor
               for(int i=0; i<16; i=i+2) {
                   try{ //Prueba que celda[y][x] no se salga del tablero
                       if(celda[y+p[i]][x+p[i+1]].isEstaDespejado()==false) {  
-                        if(celda[y+p[i]][x+p[i+1]].getNBombasAlrededor()==0){  //Pregunta si no tiene minas al rededor
+                        if(celda[y+p[i]][x+p[i+1]].getNBombasAlrededor()==0){  //Pregunta si no tiene minas alrededor
                           this.jTextArea1.setText(this.jTextArea1.getText() + s +"__Despejando en: " + (y+p[i]) + ":" + (x+p[i+1]) + "\n");
-                          limpiarRecursiva(y+p[i],x+p[i+1], miNivel); //limpiarRecursiva(y,x) es llamada si no tiene minas al rededor
-                        }else{ //Si tiene se indica la cantidad de minas al rededor
+                          limpiarRecursiva(y+p[i],x+p[i+1], miNivel); //limpiarRecursiva(y,x) es llamada si no tiene minas alrededor
+                        }else{ //Si tiene se indica la cantidad de minas alrededor
                             this.jTextArea1.setText(this.jTextArea1.getText() + s + "__FIN en " + (y+p[i]) + ":" + (x+p[i+1]) + 
                                                     " con " + celda[y+p[i]][x+p[i+1]].getNBombasAlrededor() + " mina/s encontrada/s" + "\n");
                             if(celda[y+p[i]][x+p[i+1]].isEstaDespejado()==false) { //Pregunta si no fué destapada anteriormente  
